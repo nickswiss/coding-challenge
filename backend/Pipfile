@@ -1,0 +1,13 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+django = "*"
+djangorestframework = "*"
+psycopg2-binary = "*"   # TODO: Should use source for production rather than binary
+django-cors-headers = "*"
+
+[dev-packages]
+ipython = "*"

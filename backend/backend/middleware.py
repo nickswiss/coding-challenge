@@ -7,4 +7,5 @@ class CORSMiddleware(object):
     def __call__(self, request):
         response = self.get_response(request)
         response["Access-Control-Allow-Origin"] = "*"
+        response["Access-Control-Allow-Headers"] = "*"
         return response

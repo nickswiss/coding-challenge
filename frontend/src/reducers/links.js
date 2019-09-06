@@ -1,4 +1,5 @@
 import initialState from "../initialState";
+import {LINK_CREATED} from "./linkForm";
 export const REQUESTING_LINKS = "REQUESTING_LINKS";
 export const RECEIVED_LINKS = "RECEIVED_LINKS";
 
@@ -34,6 +35,14 @@ export const links = (state = initialState.links, action) => {
         isRequestingLinks: true,
         retrievalError: ""
       };
+    case LINK_CREATED:
+      let current_links = state.data.concat();
+      current_links.push(action.link);
+      return {
+        ...state,
+        data: current_links
+      };
+
     default:
       return state;
   }

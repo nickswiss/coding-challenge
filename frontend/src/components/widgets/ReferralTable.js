@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { retrieveLinks } from "../../actions/link";
 import Table from "../common/Table";
+import {fieldValueChanged, submitLink} from "../../actions/linkFormActions";
 
 class ReferralTable extends React.Component {
   componentDidMount() {
@@ -9,7 +10,7 @@ class ReferralTable extends React.Component {
   }
 
   render() {
-    const { links } = this.props;
+    const { links, linkForm } = this.props;
     const columns = [
       {
         header: "Title",
@@ -22,9 +23,20 @@ class ReferralTable extends React.Component {
         datatype: "int"
       }
     ];
+
     return (
       <div>
-        <input/>
+        <input
+          onChange={e =>
+            this.props.onFieldValueChange("linkTitle", e.target.value)
+          }
+          value={linkForm.fields.linkTitle.value}
+        />
+        <input
+          type="submit"
+          value="Create Link"
+          onClick={() => this.props.submitLink(linkForm.fields.linkTitle.value)}
+        />
         <Table
           data={links.data}
           columns={columns}
@@ -38,11 +50,15 @@ class ReferralTable extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  links: state.links
+  links: state.links,
+  linkForm: state.linkForm
 });
 
 const mapDispatchToProps = dispatch => ({
-  getLinks: () => dispatch(retrieveLinks())
+  getLinks: () => dispatch(retrieveLinks()),
+  submitLink: value => dispatch(submitLink(value)),
+  onFieldValueChange: (fieldName, value) =>
+    dispatch(fieldValueChanged(fieldName, value))
 });
 
 export default connect(

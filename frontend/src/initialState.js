@@ -6,6 +6,7 @@ export default {
   },
   linkForm: {
     generalError: '',
+    isCreatingLink: false,
     fields: {
      linkTitle: {
        value: '',

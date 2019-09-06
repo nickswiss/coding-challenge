@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { retrieveLinks } from "../../actions/link";
-import {Table} from "../common/Table"
-import "react-table/react-table.css";
+import Table from "../common/Table";
 
 class ReferralTable extends React.Component {
   componentDidMount() {
@@ -11,22 +10,27 @@ class ReferralTable extends React.Component {
 
   render() {
     const { links } = this.props;
-
+    const columns = [
+      {
+        header: "Title",
+        accessor: "title",
+        datatype: "string"
+      },
+      {
+        header: "Clicks",
+        accessor: "clicks",
+        datatype: "int"
+      }
+    ];
     return (
       <div>
+        <input/>
         <Table
           data={links.data}
-          columns={[
-            {
-              header: "Title",
-              accessor: 'title'
-            },
-            {
-              header: "Clicks",
-              accessor: 'clicks'
-            },
-
-          ]}
+          columns={columns}
+          sortColumn={columns[0]}
+          onEditClicked={() => {}}
+          onDeleteClicked={() => {}}
         />
       </div>
     );

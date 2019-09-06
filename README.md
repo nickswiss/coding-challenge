@@ -30,3 +30,20 @@ If you've added a dependency, upgrade the lock:
 ```
 pipenv lock
 ```
+
+### Considerations
+
+##### How to edit an existing link? #####
+
+Editing in the existing columns of the table, using react:
+I have made the choice to reuse the text box to edit an existing element. Editing in place of the table ends up
+down a path of creating a pretty complex react widget, and a ton more to manage with redux. 
+
+
+##### Where to sort? #####
+As the spec does not have pagination, we will do the sorting of all the links on the client side.
+We could do the sorting by simply adding query parameters to the REST endpoint, but no need to 
+as spec does not have many links.
+
+
+

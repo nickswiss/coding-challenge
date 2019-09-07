@@ -8,7 +8,7 @@ export default {
     generalError: '',
     isCreatingLink: false,
     fields: {
-     linkTitle: {
+     title: {
        value: '',
        errorMessage: ''
      }

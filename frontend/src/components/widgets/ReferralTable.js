@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { retrieveLinks } from "../../actions/link";
 import Table from "../common/Table";
-import {fieldValueChanged, submitLink} from "../../actions/linkFormActions";
+import {fieldValueChanged, retrieveLinks, submitLink} from "../../actions/link";
 
 class ReferralTable extends React.Component {
+
   componentDidMount() {
     this.props.getLinks();
   }
@@ -26,21 +26,25 @@ class ReferralTable extends React.Component {
 
     return (
       <div>
+        <div>
+          <p>{linkForm.fields.title.errorMessage}</p>
+        </div>
         <input
           onChange={e =>
-            this.props.onFieldValueChange("linkTitle", e.target.value)
+            this.props.onFieldValueChange("title", e.target.value)
           }
-          value={linkForm.fields.linkTitle.value}
+          value={linkForm.fields.title.value}
         />
         <input
           type="submit"
           value="Create Link"
-          onClick={() => this.props.submitLink(linkForm.fields.linkTitle.value)}
+          onClick={() => this.props.submitLink(linkForm.fields.title.value)}
         />
         <Table
           data={links.data}
           columns={columns}
           sortColumn={columns[0]}
+          onCellClicked={(column, data) => {}}
           onEditClicked={() => {}}
           onDeleteClicked={() => {}}
         />

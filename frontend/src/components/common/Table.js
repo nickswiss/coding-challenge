@@ -34,7 +34,7 @@ class Table extends React.Component {
   };
 
   render() {
-    const { columns, onEditClicked, onDeleteClicked } = this.props;
+    const { columns, onCellClicked, onEditClicked, onDeleteClicked } = this.props;
     let { sortColumn, sortAscending } = this.state;
     if (!sortColumn) {
       sortColumn = columns[0];
@@ -70,7 +70,7 @@ class Table extends React.Component {
           return (
             <tr key={index}>
               {columns.map((c, i) => (
-                <td key={i}>{d[c.accessor]}</td>
+                <td key={i} onClick={() => onCellClicked(c, d)}>{d[c.accessor]}</td>
               ))}
               <td onClick={() => onEditClicked(d.id)}>Edit</td>
               <td onClick={() => onDeleteClicked(d.id)}>Delete</td>

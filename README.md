@@ -46,11 +46,6 @@ We could do the sorting by simply adding query parameters to the REST endpoint, 
 as spec does not have many links.
 
 
-#### Retrieve again after POST/PUT? #####
-Opting to push the link into list after a successful post, avoiding a service call, but list may not
-be up to date if another has added in other session
-
-
 ##### Intentionally avoiding #####
 Pagination
 Query String filtering

@@ -1,0 +1,24 @@
+# File structure version
+version: '3'
+
+services:
+
+  backend:
+    build:
+      context: ./backend
+    hostname: backend
+    volumes:
+      - ./backend:/www
+    expose:
+      - "8000"
+
+  nginx:
+    image: nginx
+    hostname: nginx
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d
+      - ./backend/static:/www/static:ro
+    depends_on:
+      - backend

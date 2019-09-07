@@ -1,9 +1,14 @@
 import axios from "axios";
 const LOCAL = "LOCAL";
+const PROD = "PROD";
 
 export function getEnvironment() {
-  if (window.location.hostname === "localhost") {
+  const hostname = window.location.hostname;
+  console.log(hostname);
+  if (hostname === "localhost") {
     return LOCAL;
+  } else if (hostname === "challenge-backend-prod.us-east-2.elasticbeanstalk.com") {
+    return PROD;
   }
 }
 
@@ -11,8 +16,11 @@ export const getApiDomain = () => {
   /*
   Returns the current domain for backend server, based on environment
    */
-  if (getEnvironment() === LOCAL) {
+  const env = getEnvironment();
+  if (env === LOCAL) {
     return "http://localhost:8000";
+  } else if (env === PROD) {
+    return "http://challenge-backend-prod.us-east-2.elasticbeanstalk.com"
   }
 };
 

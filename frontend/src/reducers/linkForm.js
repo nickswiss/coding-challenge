@@ -15,10 +15,6 @@ export const CREATING_LINK = "CREATING_LINK";
 export const LINK_CREATE_VALIDATION = "LINK_CREATE_VALIDATION";
 export const LINK_CREATE_ERROR = "LINK_CREATE_ERROR";
 
-const BACKEND_TO_FRONTEND = {
-  'title': 'linkTitle'
-};
-
 
 export const linkForm = (state = initialState.linkForm, action) => {
   switch (action.type) {
@@ -29,7 +25,6 @@ export const linkForm = (state = initialState.linkForm, action) => {
         value: action.value
       };
       return { ...state, fields };
-
     case CREATING_LINK:
       return {
         ...state,
@@ -44,7 +39,7 @@ export const linkForm = (state = initialState.linkForm, action) => {
       const errors = Object.entries(action.validationErrors);
       let nextFields = {...state.fields};
       for (let i = 0; i < errors.length; i++) {
-        const key = BACKEND_TO_FRONTEND[errors[i][0]];
+        const key = errors[i][0];
         const validation = errors[i][1];
         let fieldData = nextFields[key];
         nextFields[key] = {

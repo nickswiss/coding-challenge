@@ -1,14 +1,9 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-
-# Create your views here.
-from django.template.response import TemplateResponse
 from django.views.generic import TemplateView
 from .models import Link
 
 
 class HomeView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'index.html'
 
 
 class LandingView(TemplateView):

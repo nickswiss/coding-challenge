@@ -25,8 +25,7 @@ SECRET_KEY = '9lg@7-0lgl4dd@emn_xw81$kiaa#y6kifyy32bl+#fbdlhca5g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["localhost", "backend", "challenge-backend-prod.us-east-2.elasticbeanstalk.com"]
 
 # Application definition
 
@@ -42,7 +41,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # allow CORS requests to backend server
     'backend.middleware.CORSMiddleware',
+    # Serve static files with gunicorn application
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'react')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,7 +121,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 # CORS

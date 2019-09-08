@@ -6,13 +6,14 @@ RUN apt-get update \
  && apt-get install -y
 RUN apt-get install -y apt-utils
 
-RUN apt-get install -y wget
 
 # setup startup script for gunicord WSGI service
 RUN groupadd webapps
 RUN useradd webapp -G webapps
 RUN mkdir -p /var/log/webapp/ && chown -R webapp /var/log/webapp/ && chmod -R u+rX /var/log/webapp/
 RUN mkdir -p /var/run/webapp/ && chown -R webapp /var/run/webapp/ && chmod -R u+rX /var/run/webapp/
+RUN touch /var/log/webapp/gunicorn-webapp-access.log && chown -R webapp /var/log/webapp/gunicorn-webapp-access.log && chmod -R u+rX /var/log/webapp/gunicorn-webapp-access.log
+RUN touch /var/log/webapp/gunicorn-webapp-error.log && chown -R webapp /var/log/webapp/gunicorn-webapp-error.log && chmod -R u+rX /var/log/webapp/gunicorn-webapp-error.log
 
 RUN apt-get install -y supervisor
 RUN mkdir -p /var/log/supervisor

@@ -9,6 +9,7 @@ djangorestframework = "*"
 gunicorn = "*"
 whitenoise = "*"
 psycopg2-binary = "*"
+requests = "*"
 
 [dev-packages]
 ipython = "*"

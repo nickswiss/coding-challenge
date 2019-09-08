@@ -15,4 +15,11 @@ class LinkViewSet(ModelViewSet):
         link = Link.objects.get(pk=pk)
         link.clicks += 1
         link.save()
-        return Response(status=200)
+        return Response(
+            {
+                'redirect': reverse('referral-landing', kwargs={
+                    'link_title': link.title
+                })
+            },
+            status=200
+        )

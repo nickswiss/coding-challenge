@@ -6,6 +6,8 @@ services:
   backend:
     build:
       context: ./backend
+    environment:
+      - DJANGO_SETTINGS_MODULE=backend.settings.dev
     hostname: backend
     volumes:
       - ./backend:/www

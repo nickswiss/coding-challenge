@@ -108,3 +108,8 @@ venv.bak/
 
 # js
 node_modules
+
+# Elastic Beanstalk Files
+backend/.elasticbeanstalk/*
+!backend/.elasticbeanstalk/*.cfg.yml
+!backend/.elasticbeanstalk/*.global.yml

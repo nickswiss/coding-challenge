@@ -44,7 +44,9 @@ class ReferralTable extends React.Component {
           data={links.data}
           columns={columns}
           sortColumn={columns[0]}
-          onCellClicked={(column, data) => {}}
+          onCellClicked={(column, data) => {
+            window.location =
+          }}
           onEditClicked={() => {}}
           onDeleteClicked={() => {}}
         />

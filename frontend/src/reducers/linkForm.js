@@ -31,8 +31,17 @@ export const linkForm = (state = initialState.linkForm, action) => {
         isCreatingLink: true
       };
     case LINK_CREATED:
+      const fieldEntries = Object.entries(state.fields);
+      let fieldsNoErrors = {};
+      for(let i = 0; i< fieldEntries.length; i++) {
+        fieldsNoErrors[fieldEntries[i][0]] = {
+          ...fieldEntries[i][1],
+          errorMessage: ''
+        }
+      }
       return {
         ...state,
+        fields: fieldsNoErrors,
         isCreatingLink: false
       };
     case LINK_CREATE_VALIDATION:

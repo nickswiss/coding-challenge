@@ -2,6 +2,9 @@ export default {
   links: {
     isRequestingLinks: false,
     isDeletingLink: false,
+    sortOrder: 'asc',
+    sortBy: 'title',
+    sortType: 'string',
     retrievalError: '',
     data: []
   },

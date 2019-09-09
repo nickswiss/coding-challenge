@@ -16,10 +16,18 @@ export const RECEIVING_LINKS_ERROR = "RECEIVING_LINKS_ERROR";
 export const DELETING_LINK = 'DELETING_LINK';
 export const LINK_DELETED = 'LINK_DELETED';
 export const LINK_DELETE_ERROR = 'LINK_DELETE_ERROR';
+export const SORT_CHANGED = 'SORT_CHANGED';
 
 
 export const links = (state = initialState.links, action) => {
   switch (action.type) {
+    case SORT_CHANGED:
+      return {
+        ...state,
+        sortOrder: action.sortOrder,
+        sortBy: action.sortBy,
+        sortType: action.sortType,
+      };
     case RECEIVING_LINKS_ERROR:
       return {
         ...state,

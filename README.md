@@ -47,10 +47,6 @@ We could do the sorting by simply adding query parameters to the REST endpoint, 
 as spec does not have many links.
 
 
-##### Redirect after click #####
-
-We are 
-
 ##### Intentionally avoiding #####
 Pagination
 Query String filtering

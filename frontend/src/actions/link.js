@@ -1,10 +1,12 @@
 import {
-  DELETING_LINK, LINK_DELETE_ERROR, LINK_DELETED,
+  DELETING_LINK,
+  LINK_DELETE_ERROR,
+  LINK_DELETED,
   RECEIVED_LINKS,
   RECEIVING_LINKS_ERROR,
   REQUESTING_LINKS
 } from "../reducers/links";
-import {delLink, getLinks, patchLink, postLink, putLink} from "../api/referral";
+import { delLink, getLinks, patchLink, postLink } from "../api/referral";
 
 import {
   CREATING_LINK,
@@ -13,7 +15,12 @@ import {
   LINK_CREATE_VALIDATION,
   LINK_CREATED
 } from "../reducers/linkForm";
-import {LINK_UPDATE_ERROR, LINK_UPDATE_VALIDATION, LINK_UPDATED, UPDATING_LINK} from "../reducers/linkEditForm";
+import {
+  LINK_UPDATE_ERROR,
+  LINK_UPDATE_VALIDATION,
+  LINK_UPDATED,
+  UPDATING_LINK
+} from "../reducers/linkEditForm";
 
 const receiveLinks = data => ({
   type: RECEIVED_LINKS,
@@ -24,61 +31,6 @@ const receiveLinksError = err => ({
   type: RECEIVING_LINKS_ERROR,
   error: err
 });
-
-export const linkCreated = data => {
-  return {
-    type: LINK_CREATED,
-    link: data
-  };
-};
-
-export const linkUpdated = data => {
-  return {
-    type: LINK_UPDATED,
-    link: data
-  };
-};
-
-export const linkDeleted = () => {
-  return {
-    type: LINK_DELETED
-  };
-};
-
-const receiveLinkCreateValidation = validationErrors => {
-  return {
-    type: LINK_CREATE_VALIDATION,
-    validationErrors
-  };
-};
-
-const receiveLinkUpdateValidation = validationErrors => {
-  return {
-    type: LINK_UPDATE_VALIDATION,
-    validationErrors
-  };
-};
-
-const receiveLinkCreateError = err => {
-  return {
-    type: LINK_CREATE_ERROR,
-    error: err
-  };
-};
-
-const receiveLinkUpdateError = err => {
-  return {
-    type: LINK_UPDATE_ERROR,
-    error: err
-  };
-};
-
-const receiveLinkDeleteError = err => {
-  return {
-    type: LINK_DELETE_ERROR,
-    error: err
-  };
-};
 
 export const fieldValueChanged = (fieldName, value) => {
   return {
@@ -101,6 +53,27 @@ export const retrieveLinks = () => {
       },
       err => dispatch(receiveLinksError("Unexpected error retrieving links"))
     );
+  };
+};
+
+export const linkCreated = data => {
+  return {
+    type: LINK_CREATED,
+    link: data
+  };
+};
+
+const receiveLinkCreateValidation = validationErrors => {
+  return {
+    type: LINK_CREATE_VALIDATION,
+    validationErrors
+  };
+};
+
+const receiveLinkCreateError = err => {
+  return {
+    type: LINK_CREATE_ERROR,
+    error: err
   };
 };
 
@@ -132,6 +105,26 @@ export const submitLink = value => {
   };
 };
 
+export const linkUpdated = data => {
+  return {
+    type: LINK_UPDATED,
+    link: data
+  };
+};
+
+const receiveLinkUpdateValidation = validationErrors => {
+  return {
+    type: LINK_UPDATE_VALIDATION,
+    validationErrors
+  };
+};
+
+const receiveLinkUpdateError = err => {
+  return {
+    type: LINK_UPDATE_ERROR,
+    error: err
+  };
+};
 
 export const updateLink = (id, formFields) => {
   return function(dispatch) {
@@ -139,42 +132,51 @@ export const updateLink = (id, formFields) => {
     const reqData = {
       title: formFields.title.value
     };
-    return patchLink(id, reqData)
-      .then(
-        response => {
-          if (response.status === 200) {
-            dispatch(linkUpdated(response.data));
-            return true;
-          } else if (response.status === 400) {
-            dispatch(receiveLinkUpdateValidation(response.data));
-            return false;
-          } else {
-            dispatch(receiveLinkUpdateError("Unexpected error creating link"));
-            return false;
-          }
-        },
-        err =>
-          dispatch(receiveLinkUpdateError("Unexpected error creating link"))
-      )
+    return patchLink(id, reqData).then(
+      response => {
+        if (response.status === 200) {
+          dispatch(linkUpdated(response.data));
+          return true;
+        } else if (response.status === 400) {
+          dispatch(receiveLinkUpdateValidation(response.data));
+          return false;
+        } else {
+          dispatch(receiveLinkUpdateError("Unexpected error creating link"));
+          return false;
+        }
+      },
+      err => dispatch(receiveLinkUpdateError("Unexpected error creating link"))
+    );
   };
 };
 
-export const deleteLink = (id) => {
+export const linkDeleted = () => {
+  return {
+    type: LINK_DELETED
+  };
+};
+
+const receiveLinkDeleteError = err => {
+  return {
+    type: LINK_DELETE_ERROR,
+    error: err
+  };
+};
+
+export const deleteLink = id => {
   return function(dispatch) {
     dispatch({ type: DELETING_LINK });
-    return delLink(id)
-      .then(
-        response => {
-          if (response.status === 204) {
-            dispatch(linkDeleted());
-            return true;
-          } else {
-            dispatch(receiveLinkDeleteError("Unexpected error creating link"));
-            return false;
-          }
-        },
-        err =>
-          dispatch(receiveLinkDeleteError("Unexpected error creating link"))
-      )
+    return delLink(id).then(
+      response => {
+        if (response.status === 204) {
+          dispatch(linkDeleted());
+          return true;
+        } else {
+          dispatch(receiveLinkDeleteError("Unexpected error creating link"));
+          return false;
+        }
+      },
+      err => dispatch(receiveLinkDeleteError("Unexpected error creating link"))
+    );
   };
 };

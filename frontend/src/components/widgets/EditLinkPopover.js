@@ -1,4 +1,3 @@
-import TextField from "@material-ui/core/TextField";
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Popover from "@material-ui/core/Popover";
@@ -8,30 +7,8 @@ import {
   LINK_EDIT_VALUE_UPDATED
 } from "../../reducers/linkEditForm";
 import { updateLink } from "../../actions/link";
-import {Paper} from "@material-ui/core";
+import EditLinkForm from "../common/EditLinkForm";
 
-const LinkPopoverForm = props => {
-  const { handleValueChange, form, onSubmit } = props;
-  return (
-    <Paper>
-      <form noValidate autoComplete="off">
-        <h3>Update a link!</h3>
-        <TextField
-          id="standard-name"
-          label="Title"
-          value={form.fields.title.value}
-          onChange={e => {
-            handleValueChange("title", e.target.value);
-          }}
-          margin="normal"
-        />
-        <Button variant="contained" onClick={onSubmit}>
-          Update
-        </Button>
-      </form>
-    </Paper>
-  );
-};
 
 const EditLinkPopover = props => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -70,15 +47,25 @@ const EditLinkPopover = props => {
           horizontal: "center"
         }}
       >
-        <LinkPopoverForm
+        <EditLinkForm
           form={props.form}
           handleValueChange={props.handleValueChange}
           onEditClicked={() => props.onEditClicked(props.link)}
           onSubmit={() =>
             props
               .updateLink(props.link.id, props.form.fields)
-              .then(handleClose)
-              .then(props.handleUpdateComplete)
+              .then(success => {
+                if (success) {
+                  handleClose();
+                  return true;
+                }
+                return false;
+              })
+              .then(success => {
+                if (success) {
+                  props.handleUpdateComplete();
+                }
+              })
           }
         />
       </Popover>

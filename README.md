@@ -46,6 +46,11 @@ As the spec does not have pagination, we will do the sorting of all the links on
 We could do the sorting by simply adding query parameters to the REST endpoint, but no need to 
 as spec does not have many links.
 
+
+##### Redirect after click #####
+
+We are 
+
 ##### Intentionally avoiding #####
 Pagination
 Query String filtering
@@ -58,3 +63,9 @@ We are deploying with elastic beanstalk single container solution.
 The EB instance runs nginx by default but does not handle the requests from the load balancer
 The custom implementation forwards an additional route `/api/healthcheck` with the instances
 host variable. This avoids having to do any configuration in the app to alter `ALLOWED_HOSTS`
+
+
+##### TODO #####
+- Docstrings
+- Proptypes
+- Tests

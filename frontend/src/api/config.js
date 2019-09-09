@@ -27,7 +27,8 @@ export const getApiDomain = () => {
 const getInitializedApi = () => {
   let headers = {
     "content-type": "application/json",
-    Accept: "application/json"
+    Accept: "application/json",
+    'Cache-Control': 'no-cache'
   };
   return axios.create({
     baseURL: getApiDomain(),
@@ -59,7 +60,14 @@ export const put = (url, data) => {
   /*
   PUT request with initialized axios client
   */
-  return getInitializedApi().post(url, data);
+  return getInitializedApi().put(url, data);
+};
+
+export const patch = (url, data) => {
+  /*
+  PUT request with initialized axios client
+  */
+  return getInitializedApi().patch(url, data);
 };
 
 export const del = url => {

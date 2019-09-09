@@ -1,10 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import Table from "../common/Table";
-import {fieldValueChanged, retrieveLinks, submitLink} from "../../actions/link";
+import {
+  deleteLink,
+  fieldValueChanged,
+  retrieveLinks,
+  submitLink
+} from "../../actions/link";
+import { clickLink } from "../../api/referral";
+import { getApiDomain } from "../../api/config";
+import MaterialTable from "../common/MaterialTable";
 
 class ReferralTable extends React.Component {
-
   componentDidMount() {
     this.props.getLinks();
   }
@@ -30,9 +36,7 @@ class ReferralTable extends React.Component {
           <p>{linkForm.fields.title.errorMessage}</p>
         </div>
         <input
-          onChange={e =>
-            this.props.onFieldValueChange("title", e.target.value)
-          }
+          onChange={e => this.props.onFieldValueChange("title", e.target.value)}
           value={linkForm.fields.title.value}
         />
         <input
@@ -40,15 +44,22 @@ class ReferralTable extends React.Component {
           value="Create Link"
           onClick={() => this.props.submitLink(linkForm.fields.title.value)}
         />
-        <Table
+        <MaterialTable
           data={links.data}
           columns={columns}
           sortColumn={columns[0]}
           onCellClicked={(column, data) => {
-            window.location =
+            clickLink(data.id).then(resp => {
+              window.location.href = `${getApiDomain()}${resp.data.redirect}`;
+            });
           }}
           onEditClicked={() => {}}
-          onDeleteClicked={() => {}}
+          onDeleteClicked={id => {
+            this.props.onDeleteLink(id).then(this.props.getLinks);
+          }}
+          handleUpdateComplete={() => {
+            this.props.getLinks();
+          }}
         />
       </div>
     );
@@ -63,6 +74,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getLinks: () => dispatch(retrieveLinks()),
   submitLink: value => dispatch(submitLink(value)),
+  onDeleteLink: id => dispatch(deleteLink(id)),
   onFieldValueChange: (fieldName, value) =>
     dispatch(fieldValueChanged(fieldName, value))
 });

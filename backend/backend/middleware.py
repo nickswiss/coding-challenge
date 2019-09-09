@@ -8,4 +8,5 @@ class CORSMiddleware(object):
         response = self.get_response(request)
         response["Access-Control-Allow-Origin"] = "*"
         response["Access-Control-Allow-Headers"] = "*"
+        response["Access-Control-Allow-Methods"] = "*"
         return response

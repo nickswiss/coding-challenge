@@ -13,6 +13,10 @@ Format:
 }
  */
 export const RECEIVING_LINKS_ERROR = "RECEIVING_LINKS_ERROR";
+export const DELETING_LINK = 'DELETING_LINK';
+export const LINK_DELETED = 'LINK_DELETED';
+export const LINK_DELETE_ERROR = 'LINK_DELETE_ERROR';
+
 
 export const links = (state = initialState.links, action) => {
   switch (action.type) {
@@ -42,7 +46,21 @@ export const links = (state = initialState.links, action) => {
         ...state,
         data: current_links
       };
-
+    case DELETING_LINK:
+      return {
+        ...state,
+        isDeletingLinks: true
+      };
+    case LINK_DELETED:
+      return {
+        ...state,
+        isDeletingLinks: false
+      };
+    case LINK_DELETE_ERROR:
+      return {
+        ...state,
+        isDeletingLinks: false
+      };
     default:
       return state;
   }

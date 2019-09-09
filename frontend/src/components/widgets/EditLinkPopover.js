@@ -9,7 +9,6 @@ import {
 import { updateLink } from "../../actions/link";
 import EditLinkForm from "../common/EditLinkForm";
 
-
 const EditLinkPopover = props => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 

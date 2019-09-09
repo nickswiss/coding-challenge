@@ -15,7 +15,6 @@ export const CREATING_LINK = "CREATING_LINK";
 export const LINK_CREATE_VALIDATION = "LINK_CREATE_VALIDATION";
 export const LINK_CREATE_ERROR = "LINK_CREATE_ERROR";
 
-
 export const linkForm = (state = initialState.linkForm, action) => {
   switch (action.type) {
     case FIELD_VALUE_UPDATED:
@@ -33,11 +32,11 @@ export const linkForm = (state = initialState.linkForm, action) => {
     case LINK_CREATED:
       const fieldEntries = Object.entries(state.fields);
       let fieldsNoErrors = {};
-      for(let i = 0; i< fieldEntries.length; i++) {
+      for (let i = 0; i < fieldEntries.length; i++) {
         fieldsNoErrors[fieldEntries[i][0]] = {
           ...fieldEntries[i][1],
-          errorMessage: ''
-        }
+          errorMessage: ""
+        };
       }
       return {
         ...state,
@@ -46,7 +45,7 @@ export const linkForm = (state = initialState.linkForm, action) => {
       };
     case LINK_CREATE_VALIDATION:
       const errors = Object.entries(action.validationErrors);
-      let nextFields = {...state.fields};
+      let nextFields = { ...state.fields };
       for (let i = 0; i < errors.length; i++) {
         const key = errors[i][0];
         const validation = errors[i][1];
@@ -54,7 +53,7 @@ export const linkForm = (state = initialState.linkForm, action) => {
         nextFields[key] = {
           ...fieldData,
           errorMessage: validation
-        }
+        };
       }
       return {
         ...state,

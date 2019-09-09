@@ -12,7 +12,6 @@ import MaterialTable from "../common/MaterialTable";
 import { SORT_CHANGED } from "../../reducers/links";
 import LinkForm from "../common/LinkForm";
 
-
 class ReferralTable extends React.Component {
   componentDidMount() {
     this.props.getLinks();

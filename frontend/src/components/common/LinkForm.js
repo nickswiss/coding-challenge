@@ -1,5 +1,5 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {Button, CircularProgress, TextField} from "@material-ui/core";
+import { Button, CircularProgress, TextField } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import React from "react";
 
@@ -44,11 +44,7 @@ const LinkForm = props => {
   const { linkForm, onFieldValueChange, onLinkSubmit } = props;
   const classes = useStyles();
   const buttonContent = linkForm.isCreatingLink ? (
-    <CircularProgress
-      color="white"
-      value={0}
-      size={24}
-    />
+    <CircularProgress color="white" value={0} size={24} />
   ) : (
     "Submit"
   );
@@ -89,4 +85,4 @@ const LinkForm = props => {
   );
 };
 
-export default LinkForm
+export default LinkForm;

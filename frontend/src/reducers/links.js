@@ -1,5 +1,5 @@
 import initialState from "../initialState";
-import {LINK_CREATED} from "./linkForm";
+import { LINK_CREATED } from "./linkForm";
 export const REQUESTING_LINKS = "REQUESTING_LINKS";
 export const RECEIVED_LINKS = "RECEIVED_LINKS";
 
@@ -13,11 +13,10 @@ Format:
 }
  */
 export const RECEIVING_LINKS_ERROR = "RECEIVING_LINKS_ERROR";
-export const DELETING_LINK = 'DELETING_LINK';
-export const LINK_DELETED = 'LINK_DELETED';
-export const LINK_DELETE_ERROR = 'LINK_DELETE_ERROR';
-export const SORT_CHANGED = 'SORT_CHANGED';
-
+export const DELETING_LINK = "DELETING_LINK";
+export const LINK_DELETED = "LINK_DELETED";
+export const LINK_DELETE_ERROR = "LINK_DELETE_ERROR";
+export const SORT_CHANGED = "SORT_CHANGED";
 
 export const links = (state = initialState.links, action) => {
   switch (action.type) {
@@ -26,7 +25,7 @@ export const links = (state = initialState.links, action) => {
         ...state,
         sortOrder: action.sortOrder,
         sortBy: action.sortBy,
-        sortType: action.sortType,
+        sortType: action.sortType
       };
     case RECEIVING_LINKS_ERROR:
       return {

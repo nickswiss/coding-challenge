@@ -1,5 +1,5 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {CircularProgress, Paper} from "@material-ui/core";
+import { CircularProgress, Paper } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import React from "react";
@@ -85,4 +85,4 @@ const EditLinkForm = props => {
   );
 };
 
-export default EditLinkForm
+export default EditLinkForm;

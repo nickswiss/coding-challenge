@@ -15,7 +15,7 @@ export const linkEditForm = (state = initialState.linkEditForm, action) => {
         ...fields[action.fieldName],
         value: action.value
       };
-      return { ...state, fields};
+      return { ...state, fields };
     case UPDATING_LINK:
       return {
         ...state,

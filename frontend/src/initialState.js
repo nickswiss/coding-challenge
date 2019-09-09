@@ -2,34 +2,34 @@ export default {
   links: {
     isRequestingLinks: false,
     isDeletingLink: false,
-    sortOrder: 'asc',
-    sortBy: 'title',
-    sortType: 'string',
-    retrievalError: '',
+    sortOrder: "asc",
+    sortBy: "title",
+    sortType: "string",
+    retrievalError: "",
     data: []
   },
   linkForm: {
-    generalError: '',
+    generalError: "",
     isCreatingLink: false,
     fields: {
-     title: {
-       value: '',
-       errorMessage: ''
-     }
+      title: {
+        value: "",
+        errorMessage: ""
+      }
     }
   },
   linkEditForm: {
-    generalError: '',
+    generalError: "",
     isEditingLink: false,
     fields: {
-     title: {
-       value: '',
-       errorMessage: ''
-     },
-     clicks: {
-       value: 0,
-       errorMessage: ''
-     },
+      title: {
+        value: "",
+        errorMessage: ""
+      },
+      clicks: {
+        value: 0,
+        errorMessage: ""
+      }
     }
   }
 };

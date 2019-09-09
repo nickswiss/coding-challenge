@@ -7,7 +7,9 @@ export function getEnvironment() {
   console.log(hostname);
   if (hostname === "localhost") {
     return LOCAL;
-  } else if (hostname === "challenge-backend-prod.us-east-2.elasticbeanstalk.com") {
+  } else if (
+    hostname === "challenge-backend-prod.us-east-2.elasticbeanstalk.com"
+  ) {
     return PROD;
   }
 }
@@ -20,7 +22,7 @@ export const getApiDomain = () => {
   if (env === LOCAL) {
     return "http://localhost:8000";
   } else if (env === PROD) {
-    return "http://challenge-backend-prod.us-east-2.elasticbeanstalk.com"
+    return "http://challenge-backend-prod.us-east-2.elasticbeanstalk.com";
   }
 };
 
@@ -28,7 +30,7 @@ const getInitializedApi = () => {
   let headers = {
     "content-type": "application/json",
     Accept: "application/json",
-    'Cache-Control': 'no-cache'
+    "Cache-Control": "no-cache"
   };
   return axios.create({
     baseURL: getApiDomain(),

@@ -77,6 +77,7 @@ const LinkForm = props => {
           color={"primary"}
           variant="contained"
           onClick={() => onLinkSubmit(linkForm.fields.title.value)}
+          disabled={!linkForm.fields.title.value}
         >
           {buttonContent}
         </Button>

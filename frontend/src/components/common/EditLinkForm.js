@@ -76,6 +76,7 @@ const EditLinkForm = props => {
             variant="contained"
             onClick={onSubmit}
             color={"primary"}
+            disabled={!form.fields.title.value}
           >
             {buttonContent}
           </Button>

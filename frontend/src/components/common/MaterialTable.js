@@ -20,12 +20,22 @@ const useStyles = makeStyles(theme => ({
     marginLeft: "auto",
     marginRight: "auto",
     padding: "30px",
-    overflowX: "auto"
+    overflow: "auto"
   },
   table: {
     width: "80%",
+    height: "300px",
     marginLeft: "auto",
     marginRight: "auto"
+  },
+  linkButton: {
+    color: "#069",
+    textDecoration: "underline",
+    height: "100%",
+    width: "100%",
+    border: "none",
+    cursor: "pointer",
+    textAlign: "left"
   },
   spinnerContainer: { width: 40, marginLeft: "auto", marginRight: "auto" }
 }));
@@ -68,7 +78,7 @@ const MaterialTable = props => {
         {columns.map((column, index) => {
           let content = <p>{column.header} </p>;
           return (
-            <TableCell align="center" key={index}>
+            <TableCell align="left" key={index}>
               <TableSortLabel
                 active={orderBy === column.accessor}
                 direction={order}
@@ -92,22 +102,15 @@ const MaterialTable = props => {
       {sorted.map((d, index) => {
         return (
           <TableRow key={index}>
-            <TableCell align="center">
+            <TableCell align="left">
               <button
+                className={classes.linkButton}
                 onClick={() => onCellClicked(columns.title, d)}
-                style={{
-                  color: "#069",
-                  textDecoration: "underline",
-                  height: "100%",
-                  width: "100%",
-                  border: "none",
-                  cursor: "pointer"
-                }}
               >
                 {d.title}
               </button>
             </TableCell>
-            <TableCell align="center">{d.clicks}</TableCell>
+            <TableCell align="left">{d.clicks}</TableCell>
             <TableCell align="center">
               <EditLinkPopover
                 handleUpdateComplete={handleUpdateComplete}

@@ -10,7 +10,8 @@ const ReferralPage = props => {
           verticalAlign: "middle",
           lineHeight: "30px",
           marginTop: "60px",
-          marginBottom: "30px"
+          marginBottom: "30px",
+          color: "#556cd6"
         }}
       >
         Grow the web with Referrals!

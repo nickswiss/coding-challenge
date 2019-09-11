@@ -30,7 +30,9 @@ class DelayMiddleware(object):
         response = self.get_response(request)
         path = request.get_full_path()
         # skipping sleep on click and landing page
-        skip_sleep = any(["click" in path, "landing" in path])
+        skip_sleep = any(
+            ["click" in path, "landing" in path, request.method == "OPTIONS"]
+        )
         if not skip_sleep:
             time.sleep(0.5)
         return response

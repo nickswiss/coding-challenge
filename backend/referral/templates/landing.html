@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Welcome to the {{referral.title}} page</title>
+      <link rel="stylesheet" href={% static "css/styles.css" %}>
+  </head>
+  <body>
+  <div class="container">
+      <div class="heading-container">
+          <h1 class="centered-h1">{{ referral.title }} are awesome!</h1>
+      </div>
+      <div class="heading-container">
+          <h1 class="centered-h1">Come join Tim's World Wide Web!</h1>
+      </div>
+      <div class="image-container">
+          <img class="centered-image" src="{% static "img/getambassador_logo.jpg" %}" alt="My image">
+      </div>
+  </div>
+  </body>
+</html>

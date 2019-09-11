@@ -5,8 +5,14 @@
 Full Stack
 
 ### Application links:
+
 [Referral App](http://challenge-backend-prod.us-east-2.elasticbeanstalk.com/)
+
 [CSS Exercise](http://challenge-backend-prod.us-east-2.elasticbeanstalk.com/css-exercise)
+
+### FYI ###
+
+I have added a 0.5 second delay time to the backend requests, to fully display the UI states.
 
 
 ### Problem/Solution
@@ -35,7 +41,10 @@ A frontend react application, and a backend REST server for the links.
 When a link is clicked redirect to django rendered landing page. (see more information below in Considerations::Manual Redirect)
 The title in the URL will be used to query the link db for a link with this title. This implies that the link title must be unique.  The landing page is basic, and displays some text with a link's title (using Template to render title in html) and an ambassador image located in apps static directory.
 
+
 ### Considerations
+
+#### Deployment:
 
 ##### Deploying with AWS
 Have worked a small amount with AWS, and wanted to get some more experience with using it. 
@@ -71,6 +80,7 @@ I have chosen to redirect on the frontend, following a post request to `api/link
 the server side url to redirect to after a click. The downside with this, is an inability to provide a url
 to the link or `Open in new tab`. We could alternatively submit an invisible form, and return a server
 side redirect response, but this would have the same problem as above.
+
 
 ### Given more time
 - Support pagination in UI powered by backend pages.

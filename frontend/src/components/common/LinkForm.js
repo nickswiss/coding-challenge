@@ -2,6 +2,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Button, CircularProgress, TextField } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import React from "react";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,6 +42,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const LinkForm = props => {
+  /*
+  Presentation form used when creating a link
+   */
   const { linkForm, onFieldValueChange, onLinkSubmit } = props;
   const classes = useStyles();
   const buttonContent = linkForm.isCreatingLink ? (
@@ -84,6 +88,21 @@ const LinkForm = props => {
       </form>
     </Paper>
   );
+};
+
+LinkForm.propTypes = {
+  onFieldValueChange: PropTypes.func.isRequired,
+  onLinkSubmit: PropTypes.func.isRequired,
+  linkForm: PropTypes.shape({
+    generalError: PropTypes.string,
+    isCreatingLink: PropTypes.bool.isRequired,
+    fields: PropTypes.shape({
+      title: PropTypes.shape({
+        value: PropTypes.string.isRequired,
+        errorMessage: PropTypes.string.isRequired
+      })
+    })
+  }).isRequired
 };
 
 export default LinkForm;

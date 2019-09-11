@@ -3,8 +3,10 @@ const LOCAL = "LOCAL";
 const PROD = "PROD";
 
 export function getEnvironment() {
+  /*
+  Returns the environment, based on the value of window.location.hostname
+   */
   const hostname = window.location.hostname;
-  console.log(hostname);
   if (hostname === "localhost") {
     return LOCAL;
   } else if (
@@ -27,6 +29,10 @@ export const getApiDomain = () => {
 };
 
 const getInitializedApi = () => {
+  /*
+  Returns an axios client initialized with default values
+  Erroring on >500 status so that we can handle our own validation from server
+   */
   let headers = {
     "content-type": "application/json",
     Accept: "application/json",
@@ -67,7 +73,7 @@ export const put = (url, data) => {
 
 export const patch = (url, data) => {
   /*
-  PUT request with initialized axios client
+  PATH request with initialized axios client
   */
   return getInitializedApi().patch(url, data);
 };

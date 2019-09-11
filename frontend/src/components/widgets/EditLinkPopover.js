@@ -8,10 +8,14 @@ import {
 } from "../../reducers/linkEditForm";
 import { updateLink } from "../../actions/link";
 import EditLinkForm from "../common/EditLinkForm";
+import PropTypes from "prop-types";
+
 
 const EditLinkPopover = props => {
+  /*
+  Edit Link widget. Button embedded will display popover with EditLinkForm when clicked.
+   */
   const [anchorEl, setAnchorEl] = React.useState(null);
-
   function handleClose() {
     setAnchorEl(null);
   }
@@ -70,6 +74,26 @@ const EditLinkPopover = props => {
       </Popover>
     </div>
   );
+};
+
+EditLinkPopover.propTypes = {
+  onEditClicked: PropTypes.func.isRequired,
+  handleValueChange: PropTypes.func.isRequired,
+  link: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    clicks: PropTypes.number.isRequired
+  }),
+  form: PropTypes.shape({
+    generalError: PropTypes.string,
+    isEditingLink: PropTypes.bool.isRequired,
+    fields: PropTypes.shape({
+      title: PropTypes.shape({
+        value: PropTypes.string.isRequired,
+        errorMessage: PropTypes.string.isRequired
+      })
+    })
+  })
 };
 
 const mapStateToProps = state => ({

@@ -1,7 +1,6 @@
 import initialState from "../initialState";
 
 /*
-FIELD_VALUE_UPDATED:
 Used to update the input value on a particular field
 {
   type: FIELD_VALUE_UPDATED,
@@ -10,9 +9,39 @@ Used to update the input value on a particular field
 }
  */
 export const FIELD_VALUE_UPDATED = "FIELD_VALUE_UPDATED";
+
+/*
+Link has been successfully created by service call
+{
+  type: LINK_CREATED
+}
+ */
 export const LINK_CREATED = "LINK_CREATED";
+
+/*
+Service call to create link is in progress
+{
+  type: CREATING_LINK
+}
+ */
 export const CREATING_LINK = "CREATING_LINK";
+
+/*
+Validation error occurred while creating a link
+{
+  type: LINK_CREATE_VALIDATION,
+  validationErrors: validation errors in create request
+}
+ */
 export const LINK_CREATE_VALIDATION = "LINK_CREATE_VALIDATION";
+
+/*
+Unhandled error occurred while creating a link
+{
+  type: LINK_CREATE_ERROR,
+  error: Message to display when occurred
+}
+ */
 export const LINK_CREATE_ERROR = "LINK_CREATE_ERROR";
 
 export const linkForm = (state = initialState.linkForm, action) => {
@@ -35,7 +64,8 @@ export const linkForm = (state = initialState.linkForm, action) => {
       for (let i = 0; i < fieldEntries.length; i++) {
         fieldsNoErrors[fieldEntries[i][0]] = {
           ...fieldEntries[i][1],
-          errorMessage: ""
+          errorMessage: "",
+          value: ""
         };
       }
       return {
@@ -48,7 +78,7 @@ export const linkForm = (state = initialState.linkForm, action) => {
       let nextFields = { ...state.fields };
       for (let i = 0; i < errors.length; i++) {
         const key = errors[i][0];
-        const validation = errors[i][1];
+        const validation = errors[i][1][0];
         let fieldData = nextFields[key];
         nextFields[key] = {
           ...fieldData,

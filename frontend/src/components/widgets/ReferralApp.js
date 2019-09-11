@@ -8,11 +8,19 @@ import {
 } from "../../actions/link";
 import { clickLink } from "../../api/referral";
 import { getApiDomain } from "../../api/config";
-import MaterialTable from "../common/MaterialTable";
 import { SORT_CHANGED } from "../../reducers/links";
 import LinkForm from "../common/LinkForm";
+import MaterialEditDeleteTable from "../common/MaterialEditDeleteTable";
 
-class ReferralTable extends React.Component {
+class ReferralApp extends React.Component {
+  /*
+  Creates links and displays links in a table
+  Currently supports:
+    client-side sort
+    create
+    edit link
+    delete link
+   */
   componentDidMount() {
     this.props.getLinks();
   }
@@ -33,12 +41,14 @@ class ReferralTable extends React.Component {
       {
         header: "Title",
         accessor: "title",
-        datatype: "string"
+        datatype: "string",
+        clickable: true,
       },
       {
         header: "Clicks",
         accessor: "clicks",
-        datatype: "int"
+        datatype: "int",
+        clickable: false
       }
     ];
 
@@ -51,7 +61,7 @@ class ReferralTable extends React.Component {
           }
           onLinkSubmit={value => this.props.submitLink(value)}
         />
-        <MaterialTable
+        <MaterialEditDeleteTable
           data={links.data}
           columns={columns}
           orderBy={links.sortBy}
@@ -99,4 +109,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ReferralTable);
+)(ReferralApp);

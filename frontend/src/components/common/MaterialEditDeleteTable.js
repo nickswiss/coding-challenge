@@ -11,6 +11,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import EditLinkPopover from "../widgets/EditLinkPopover";
 import { sortObjectsByAttribute } from "../../lib/sort";
 import { CircularProgress } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,7 +25,6 @@ const useStyles = makeStyles(theme => ({
   },
   table: {
     width: "80%",
-    height: "300px",
     marginLeft: "auto",
     marginRight: "auto"
   },
@@ -40,7 +40,10 @@ const useStyles = makeStyles(theme => ({
   spinnerContainer: { width: 40, marginLeft: "auto", marginRight: "auto" }
 }));
 
-const MaterialTable = props => {
+const MaterialEditDeleteTable = props => {
+  /*
+    Generic table with edit and delete columns and hooks
+   */
   const {
     columns,
     onCellClicked,
@@ -60,7 +63,7 @@ const MaterialTable = props => {
     return (
       <Paper className={classes.root}>
         <div className={classes.spinnerContainer}>
-          <CircularProgress value={0} />
+          <CircularProgress color="primary" value={0} />
         </div>
       </Paper>
     );
@@ -102,15 +105,26 @@ const MaterialTable = props => {
       {sorted.map((d, index) => {
         return (
           <TableRow key={index}>
-            <TableCell align="left">
-              <button
-                className={classes.linkButton}
-                onClick={() => onCellClicked(columns.title, d)}
-              >
-                {d.title}
-              </button>
-            </TableCell>
-            <TableCell align="left">{d.clicks}</TableCell>
+            {columns.map((c, i) => {
+              if (c.clickable) {
+                return (
+                  <TableCell align="left" key={i}>
+                    <button
+                      className={classes.linkButton}
+                      onClick={() => onCellClicked(c, d)}
+                    >
+                      {d[c.accessor]}
+                    </button>
+                  </TableCell>
+                );
+              } else {
+                return (
+                  <TableCell align="left" key={i}>
+                    {d[c.accessor]}
+                  </TableCell>
+                );
+              }
+            })}
             <TableCell align="center">
               <EditLinkPopover
                 handleUpdateComplete={handleUpdateComplete}
@@ -141,4 +155,23 @@ const MaterialTable = props => {
   );
 };
 
-export default MaterialTable;
+MaterialEditDeleteTable.propTypes = {
+  onCellClicked: PropTypes.func.isRequired,
+  onDeleteClicked: PropTypes.func.isRequired,
+  handleUpdateComplete: PropTypes.func.isRequired,
+  handleSort: PropTypes.func.isRequired,
+  order: PropTypes.oneOf(["asc", "desc"]),
+  orderBy: PropTypes.oneOf(["title", "clicks"]),
+  orderDataType: PropTypes.oneOf(["string", "int", "decimal", "number"]),
+  data: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      header: PropTypes.string.isRequired,
+      accessor: PropTypes.string.isRequired,
+      datatype: PropTypes.string.isRequired
+    })
+  ).isRequired
+};
+
+export default MaterialEditDeleteTable;

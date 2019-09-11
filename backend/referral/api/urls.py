@@ -6,9 +6,9 @@ from .viewsets import LinkViewSet
 
 
 router = DefaultRouter()
-router.register('links', LinkViewSet)
+router.register("links", LinkViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('health-check', health_check),
+    path("", include(router.urls)),
+    path("health-check", health_check, name="health-check"),
 ]

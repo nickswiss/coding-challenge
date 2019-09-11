@@ -5,6 +5,11 @@ import { linkForm } from "./reducers/linkForm";
 import { linkEditForm } from "./reducers/linkEditForm";
 
 const configureStore = () => {
+  /*
+  Configures the redux store with enhancers and reducers
+  Returns:
+    configuredStore: store initialized with reducers nad enhancers
+   */
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const referralReducer = combineReducers({
     links,

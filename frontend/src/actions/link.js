@@ -22,17 +22,27 @@ import {
   UPDATING_LINK
 } from "../reducers/linkEditForm";
 
+
+/*
+ Links are received from service call
+ */
 const receiveLinks = data => ({
   type: RECEIVED_LINKS,
   links: data
 });
 
+/*
+ Error receiving links from service call
+ */
 const receiveLinksError = err => ({
   type: RECEIVING_LINKS_ERROR,
   error: err
 });
 
 export const fieldValueChanged = (fieldName, value) => {
+  /*
+  Generic action for updating the link create form
+   */
   return {
     type: FIELD_VALUE_UPDATED,
     fieldName,
@@ -41,6 +51,9 @@ export const fieldValueChanged = (fieldName, value) => {
 };
 
 export const retrieveLinks = () => {
+  /*
+   Async action creator which handles request response actions for
+   */
   return function(dispatch) {
     dispatch({ type: REQUESTING_LINKS });
     return getLinks().then(
@@ -57,6 +70,9 @@ export const retrieveLinks = () => {
 };
 
 export const linkCreated = data => {
+  /*
+   Link has been successfully created
+   */
   return {
     type: LINK_CREATED,
     link: data
@@ -64,6 +80,9 @@ export const linkCreated = data => {
 };
 
 const receiveLinkCreateValidation = validationErrors => {
+  /*
+   Validation errors occurred on create service request
+   */
   return {
     type: LINK_CREATE_VALIDATION,
     validationErrors
@@ -71,6 +90,9 @@ const receiveLinkCreateValidation = validationErrors => {
 };
 
 const receiveLinkCreateError = err => {
+  /*
+   Received unhandled error in create service request
+   */
   return {
     type: LINK_CREATE_ERROR,
     error: err
@@ -78,6 +100,9 @@ const receiveLinkCreateError = err => {
 };
 
 export const submitLink = value => {
+  /*
+   Async action creator for creating a link
+   */
   return function(dispatch) {
     dispatch({ type: CREATING_LINK });
     return postLink({ title: value, clicks: 0 })
@@ -106,6 +131,9 @@ export const submitLink = value => {
 };
 
 export const linkUpdated = data => {
+  /*
+   Link was updated successfully in service call
+   */
   return {
     type: LINK_UPDATED,
     link: data
@@ -113,6 +141,9 @@ export const linkUpdated = data => {
 };
 
 const receiveLinkUpdateValidation = validationErrors => {
+  /*
+   Validation error occurred when updating link
+   */
   return {
     type: LINK_UPDATE_VALIDATION,
     validationErrors
@@ -120,6 +151,9 @@ const receiveLinkUpdateValidation = validationErrors => {
 };
 
 const receiveLinkUpdateError = err => {
+  /*
+  Unhandled error occurred when updating a link
+   */
   return {
     type: LINK_UPDATE_ERROR,
     error: err
@@ -127,6 +161,9 @@ const receiveLinkUpdateError = err => {
 };
 
 export const updateLink = (id, formFields) => {
+  /*
+  Async action creator for update link service call
+   */
   return function(dispatch) {
     dispatch({ type: UPDATING_LINK });
     const reqData = {
@@ -151,12 +188,18 @@ export const updateLink = (id, formFields) => {
 };
 
 export const linkDeleted = () => {
+  /*
+  Successfully deleted link
+   */
   return {
     type: LINK_DELETED
   };
 };
 
 const receiveLinkDeleteError = err => {
+  /*
+  Error occurred while deleting a link
+   */
   return {
     type: LINK_DELETE_ERROR,
     error: err
@@ -164,6 +207,9 @@ const receiveLinkDeleteError = err => {
 };
 
 export const deleteLink = id => {
+  /*
+  Async action creator for delete link service call
+   */
   return function(dispatch) {
     dispatch({ type: DELETING_LINK });
     return delLink(id).then(

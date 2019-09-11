@@ -4,7 +4,6 @@ export const REQUESTING_LINKS = "REQUESTING_LINKS";
 export const RECEIVED_LINKS = "RECEIVED_LINKS";
 
 /*
-RECEIVING_LINKS_ERROR:
 Used when an unexpected error occurred retrieving list of links
 Format:
 {
@@ -13,9 +12,44 @@ Format:
 }
  */
 export const RECEIVING_LINKS_ERROR = "RECEIVING_LINKS_ERROR";
+
+/*
+Delete link service call is in progress
+{
+  type: DELETING_LINK
+}
+ */
 export const DELETING_LINK = "DELETING_LINK";
+
+/*
+Link was successfully deleted from service call
+Format:
+{
+  type: LINK_DELETED
+}
+ */
 export const LINK_DELETED = "LINK_DELETED";
+
+/*
+Unhandled error while deleting links
+Format:
+{
+  type: LINK_DELETE_ERROR,
+  error: '<message to display>
+}
+ */
 export const LINK_DELETE_ERROR = "LINK_DELETE_ERROR";
+
+/*
+Client side sort has changed attribute and/or direction
+Format:
+{
+  type: SORT_CHANGED,
+  sortOrder: which order to sort 'asc' or 'desc'
+  sortBy: which attribute to sort the list by
+  sortType: the data type of the element being sorted
+}
+ */
 export const SORT_CHANGED = "SORT_CHANGED";
 
 export const links = (state = initialState.links, action) => {

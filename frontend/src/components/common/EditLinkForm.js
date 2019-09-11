@@ -3,6 +3,8 @@ import { CircularProgress, Paper } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import React from "react";
+import PropTypes from 'prop-types';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,7 +40,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const EditLinkForm = props => {
-  const { handleValueChange, form, onSubmit } = props;
+  /*
+    Presentation Form used when updating a link
+   */
+  const { handleValueChange, onSubmit, form  } = props;
   const classes = useStyles();
   const buttonContent = form.isEditingLink ? (
     <CircularProgress color="white" value={0} size={24} />
@@ -84,6 +89,21 @@ const EditLinkForm = props => {
       </form>
     </Paper>
   );
+};
+
+EditLinkForm.propTypes = {
+  handleValueChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  form: PropTypes.shape({
+    generalError: PropTypes.string,
+    isEditingLink: PropTypes.bool.isRequired,
+    fields: PropTypes.shape({
+      title: PropTypes.shape({
+        value: PropTypes.string.isRequired,
+        errorMessage: PropTypes.string.isRequired
+      })
+    })
+  })
 };
 
 export default EditLinkForm;

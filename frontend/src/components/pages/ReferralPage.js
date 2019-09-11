@@ -1,7 +1,10 @@
-import ReferralTable from "../widgets/ReferralTable";
+import ReferralApp from "../widgets/ReferralApp";
 import React from "react";
 
 const ReferralPage = props => {
+  /*
+  Referral page hosting ReferralApp
+   */
   return (
     <div>
       <h1
@@ -16,7 +19,7 @@ const ReferralPage = props => {
       >
         Grow the web with Referrals!
       </h1>
-      <ReferralTable />
+      <ReferralApp />
     </div>
   );
 };

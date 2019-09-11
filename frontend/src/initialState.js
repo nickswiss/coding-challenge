@@ -1,3 +1,6 @@
+/*
+Initial state of the redux store, referenced by reducers initial state
+ */
 export default {
   links: {
     isRequestingLinks: false,
@@ -24,10 +27,6 @@ export default {
     fields: {
       title: {
         value: "",
-        errorMessage: ""
-      },
-      clicks: {
-        value: 0,
         errorMessage: ""
       }
     }

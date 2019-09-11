@@ -105,7 +105,6 @@ const MaterialEditDeleteTable = props => {
   const tableBody = (
     <TableBody>
       {sorted.map((d, index) => {
-        console.log(isDeletingLink, deletingId);
         const deleteButtonContent = isDeletingLink && d.id === deletingId ? (
           <CircularProgress color="white" value={0} size={24} />
         ) : (

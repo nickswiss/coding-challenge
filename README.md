@@ -44,10 +44,18 @@ We are deploying the project with:
  - Elastic beanstalk - supports auto scaling and load balancing
  - A postgres RDS - connections are passed to docker container
  - The single docker container solution provided by AWS
- - Using AWS provided nginx server to route requests with custom nginx conf
+ - Using AWS provided nginx server to route requests with custom nginx conf (see below Custom Nginx Conf)
  - Serving static files from django application (including react app) with whitenoise
  - Endpoint in django app for load balance request `/api/health-check`
 
+##### Custom Nginx Conf
+
+We are deploying with elastic beanstalk single container solution.
+The EB instance runs nginx by default but does not handle the requests from the load balancer
+The custom implementation forwards an additional route `/api/healthcheck` with the instances
+host variable. This avoids having to do any configuration in the app to alter `ALLOWED_HOSTS`.
+
+#### Frontend:
 
 ##### Where to sort?
 
@@ -63,21 +71,6 @@ I have chosen to redirect on the frontend, following a post request to `api/link
 the server side url to redirect to after a click. The downside with this, is an inability to provide a url
 to the link or `Open in new tab`. We could alternatively submit an invisible form, and return a server
 side redirect response, but this would have the same problem as above.
-
-##### Intentionally avoiding
-
-Pagination - Could be added, but not mentioned in spec
-Query String filtering - Client side table is doing sorting, if data becomes large, can move to query string
-Proxima Nova - Used a font matcher to determine font in css-exercise. Google Fonts does not provide this for free.
-
-#### Backend:
-
-##### Custom Nginx Conf
-
-We are deploying with elastic beanstalk single container solution.
-The EB instance runs nginx by default but does not handle the requests from the load balancer
-The custom implementation forwards an additional route `/api/healthcheck` with the instances
-host variable. This avoids having to do any configuration in the app to alter `ALLOWED_HOSTS`.
 
 ### Given more time
 - Support pagination in UI powered by backend pages.

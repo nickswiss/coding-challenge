@@ -5,8 +5,14 @@
 Full Stack
 
 ### Application links:
+
 [Referral App](http://challenge-backend-prod.us-east-2.elasticbeanstalk.com/)
+
 [CSS Exercise](http://challenge-backend-prod.us-east-2.elasticbeanstalk.com/css-exercise)
+
+### FYI ###
+
+I have added a 0.5 second delay time to the backend requests, to fully display the UI states.
 
 
 ### Problem/Solution
@@ -35,7 +41,10 @@ A frontend react application, and a backend REST server for the links.
 When a link is clicked redirect to django rendered landing page. (see more information below in Considerations::Manual Redirect)
 The title in the URL will be used to query the link db for a link with this title. This implies that the link title must be unique.  The landing page is basic, and displays some text with a link's title (using Template to render title in html) and an ambassador image located in apps static directory.
 
+
 ### Considerations
+
+#### Deployment
 
 ##### Deploying with AWS
 Have worked a small amount with AWS, and wanted to get some more experience with using it. 
@@ -48,6 +57,8 @@ We are deploying the project with:
  - Serving static files from django application (including react app) with whitenoise
  - Endpoint in django app for load balance request `/api/health-check`
 
+
+#### Frontend
 
 ##### Where to sort?
 
@@ -64,12 +75,6 @@ the server side url to redirect to after a click. The downside with this, is an 
 to the link or `Open in new tab`. We could alternatively submit an invisible form, and return a server
 side redirect response, but this would have the same problem as above.
 
-##### Intentionally avoiding
-
-Pagination - Could be added, but not mentioned in spec
-Query String filtering - Client side table is doing sorting, if data becomes large, can move to query string
-Proxima Nova - Used a font matcher to determine font in css-exercise. Google Fonts does not provide this for free.
-
 #### Backend:
 
 ##### Custom Nginx Conf
@@ -78,6 +83,7 @@ We are deploying with elastic beanstalk single container solution.
 The EB instance runs nginx by default but does not handle the requests from the load balancer
 The custom implementation forwards an additional route `/api/healthcheck` with the instances
 host variable. This avoids having to do any configuration in the app to alter `ALLOWED_HOSTS`.
+
 
 ### Given more time
 - Support pagination in UI powered by backend pages.

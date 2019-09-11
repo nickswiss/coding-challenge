@@ -96,13 +96,13 @@ export const links = (state = initialState.links, action) => {
     case LINK_DELETED:
       return {
         ...state,
-        isDeletingLinks: false,
+        isDeletingLink: false,
         deletingId: -1
       };
     case LINK_DELETE_ERROR:
       return {
         ...state,
-        isDeletingLinks: false,
+        isDeletingLink: false,
         deletingId: -1
       };
     default:

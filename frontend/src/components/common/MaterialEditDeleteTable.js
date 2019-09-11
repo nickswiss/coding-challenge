@@ -117,6 +117,7 @@ const MaterialEditDeleteTable = props => {
               color="secondary"
               variant="contained"
               onClick={() => onDeleteClicked(d.id)}
+              disabled={!!isDeletingLink}
             >
               {deleteButtonContent}
             </Button>

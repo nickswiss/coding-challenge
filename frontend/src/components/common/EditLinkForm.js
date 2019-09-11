@@ -80,7 +80,7 @@ const EditLinkForm = props => {
             variant="contained"
             onClick={onSubmit}
             color={"primary"}
-            disabled={!form.fields.title.value}
+            disabled={!form.fields.title.value || form.isEditingLink}
           >
             {buttonContent}
           </Button>

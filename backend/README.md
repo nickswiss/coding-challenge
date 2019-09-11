@@ -39,7 +39,6 @@ pipenv lock
 ### Running backend tests ###
 
 ```bash
-cd backend
 export DJANGO_SETTINGS_MODULE=backend.settings.dev
 pipenv run python3 manage.py test
 ```

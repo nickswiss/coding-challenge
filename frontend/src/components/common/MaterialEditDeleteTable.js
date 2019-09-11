@@ -54,7 +54,9 @@ const MaterialEditDeleteTable = props => {
     orderBy,
     orderDataType,
     data,
-    loading
+    loading,
+    isDeletingLink,
+    deletingId
   } = props;
 
   const classes = useStyles();
@@ -79,7 +81,7 @@ const MaterialEditDeleteTable = props => {
     <TableHead>
       <TableRow>
         {columns.map((column, index) => {
-          let content = <p>{column.header} </p>;
+          const content = <p>{column.header} </p>;
           return (
             <TableCell align="left" key={index}>
               <TableSortLabel
@@ -103,6 +105,24 @@ const MaterialEditDeleteTable = props => {
   const tableBody = (
     <TableBody>
       {sorted.map((d, index) => {
+        const deleteButtonContent = isDeletingLink && d.id === deletingId ? (
+          <CircularProgress color="white" value={0} size={24} />
+        ) : (
+          "Delete"
+        );
+        const deleteButton = (
+          <TableCell align="center">
+            <Button
+              className={classes.button}
+              color="secondary"
+              variant="contained"
+              onClick={() => onDeleteClicked(d.id)}
+              disabled={!!isDeletingLink}
+            >
+              {deleteButtonContent}
+            </Button>
+          </TableCell>
+        );
         return (
           <TableRow key={index}>
             {columns.map((c, i) => {
@@ -131,15 +151,7 @@ const MaterialEditDeleteTable = props => {
                 link={d}
               />
             </TableCell>
-            <TableCell align="center">
-              <Button
-                color="secondary"
-                variant="contained"
-                onClick={() => onDeleteClicked(d.id)}
-              >
-                Delete
-              </Button>
-            </TableCell>
+            {deleteButton}
           </TableRow>
         );
       })}

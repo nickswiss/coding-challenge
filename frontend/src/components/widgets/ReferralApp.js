@@ -68,6 +68,8 @@ class ReferralApp extends React.Component {
           order={links.sortOrder}
           orderDataType={links.sortType}
           loading={links.isRequestingLinks}
+          isDeletingLink={links.isDeletingLink}
+          deletingId={links.deletingId}
           onCellClicked={(column, data) => {
             clickLink(data.id).then(resp => {
               window.location.href = `${getApiDomain()}${resp.data.redirect}`;

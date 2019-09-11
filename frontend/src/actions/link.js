@@ -210,7 +210,7 @@ export const deleteLink = id => {
   Async action creator for delete link service call
    */
   return function(dispatch) {
-    dispatch({ type: DELETING_LINK });
+    dispatch({ type: DELETING_LINK, id: id});
     return delLink(id).then(
       response => {
         if (response.status === 204) {

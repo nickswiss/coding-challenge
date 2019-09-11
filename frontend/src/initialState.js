@@ -5,6 +5,7 @@ export default {
   links: {
     isRequestingLinks: false,
     isDeletingLink: false,
+    deletingId: -1,
     sortOrder: "asc",
     sortBy: "title",
     sortType: "string",

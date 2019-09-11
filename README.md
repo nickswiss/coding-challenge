@@ -83,7 +83,8 @@ side redirect response, but this would have the same problem as above.
 
 
 ### Given more time
-- Support pagination in UI powered by backend pages.
+- Move EditLinkPopover out of generic table class
+- Support pagination in UI powered by backend rest pages.
 - More frontend tests
 - Refresh links button (for retrieving edits/creations made in another session without full page reload)
 - Search box using query string 

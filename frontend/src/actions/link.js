@@ -22,7 +22,6 @@ import {
   UPDATING_LINK
 } from "../reducers/linkEditForm";
 
-
 /*
  Links are received from service call
  */

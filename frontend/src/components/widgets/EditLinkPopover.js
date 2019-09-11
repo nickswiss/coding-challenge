@@ -10,7 +10,6 @@ import { updateLink } from "../../actions/link";
 import EditLinkForm from "../common/EditLinkForm";
 import PropTypes from "prop-types";
 
-
 const EditLinkPopover = props => {
   /*
   Edit Link widget. Button embedded will display popover with EditLinkForm when clicked.

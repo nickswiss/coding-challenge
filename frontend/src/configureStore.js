@@ -10,16 +10,14 @@ const configureStore = () => {
   Returns:
     configuredStore: store initialized with reducers nad enhancers
    */
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const referralReducer = combineReducers({
     links,
     linkForm,
     linkEditForm
   });
-  return createStore(
-    referralReducer,
-    composeEnhancers(applyMiddleware(thunk))
-  );
+  return createStore(referralReducer, composeEnhancers(applyMiddleware(thunk)));
 };
 
 export default configureStore;

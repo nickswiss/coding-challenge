@@ -16,6 +16,4 @@ Including another URLconf
 from django.urls import include, path
 from referral.urls import urlpatterns as referral_patterns
 
-urlpatterns = [
-    path('', include(referral_patterns))
-]
+urlpatterns = [path("", include(referral_patterns))]

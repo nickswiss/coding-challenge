@@ -1,1 +1,1 @@
-default_app_config = 'referral.apps.ReferralConfig'
+default_app_config = "referral.apps.ReferralConfig"

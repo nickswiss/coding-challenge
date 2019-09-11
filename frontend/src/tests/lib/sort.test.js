@@ -20,14 +20,26 @@ it("compareObjectsByAttribute should return -1 when attr on a is less than b by 
 it("compareObjectsByAttribute should return 1 when attr on a is less than b when gt=false", () => {
   const compareA = { id: 1 };
   const compareB = { id: 2 };
-  const value = compareObjectsByAttribute("int", compareA, compareB, "id", false);
+  const value = compareObjectsByAttribute(
+    "int",
+    compareA,
+    compareB,
+    "id",
+    false
+  );
   expect(value).toEqual(1);
 });
 
 it("compareObjectsByAttribute should return -1 when attr on a is greater than b when gt=false", () => {
   const compareA = { id: 2 };
   const compareB = { id: 1 };
-  const value = compareObjectsByAttribute("int", compareA, compareB, "id", false);
+  const value = compareObjectsByAttribute(
+    "int",
+    compareA,
+    compareB,
+    "id",
+    false
+  );
   expect(value).toEqual(-1);
 });
 

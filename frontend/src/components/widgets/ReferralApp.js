@@ -42,7 +42,7 @@ class ReferralApp extends React.Component {
         header: "Title",
         accessor: "title",
         datatype: "string",
-        clickable: true,
+        clickable: true
       },
       {
         header: "Clicks",

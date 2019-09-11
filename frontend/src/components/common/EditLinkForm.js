@@ -3,8 +3,7 @@ import { CircularProgress, Paper } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import React from "react";
-import PropTypes from 'prop-types';
-
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,7 +42,7 @@ const EditLinkForm = props => {
   /*
     Presentation Form used when updating a link
    */
-  const { handleValueChange, onSubmit, form  } = props;
+  const { handleValueChange, onSubmit, form } = props;
   const classes = useStyles();
   const buttonContent = form.isEditingLink ? (
     <CircularProgress color="white" value={0} size={24} />
